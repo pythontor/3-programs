@@ -1,0 +1,90 @@
+namespace programs
+{
+    class program
+    {        
+        static void Main(string[] args)
+        {
+            Console.WriteLine("1. Угадай число.");
+            Console.WriteLine("2. Таблица умножения.");
+            Console.WriteLine("3. Вывод делителей числа.");
+            Console.WriteLine("4. Закрыть программу.");
+
+            char key = '0';
+
+            while(key != ((char)ConsoleKey.Escape))
+            {
+                key = Console.ReadKey(true).KeyChar;
+                Console.WriteLine(key);
+                switch (key)
+                {
+                    case '2':
+                        var table = new int[10, 10];
+                        for (int i = 0; i < 10; ++i)
+                        {
+                            for (int j = 0; j < 10; ++j)
+                            {
+                                table[i, j] = i * j;
+                            }
+                        }
+                        for (int i = 0; i < 10; ++i)
+                        {
+                            for (int j = 0; j < 10; ++j)
+                            {
+                                Console.Write("{0, 3}", table[i, j]);
+                            }
+                            Console.WriteLine();
+                        }
+                        break;
+
+                    case '1':
+                        Random random = new Random();
+                        int value = random.Next(0, 100);
+                        int a = Convert.ToInt32(Console.ReadLine());
+                        while (a != value)
+                        {
+                            a = Convert.ToInt32(Console.ReadLine());
+                            if (a < value)
+                            {
+                                Console.WriteLine("Нужно больше.");
+                            }
+                            if (a > value)
+                            {
+                                Console.WriteLine("Нужно меньше.");
+                            }
+                            if (a == value)
+                            {
+                                Console.WriteLine("Догадались!");
+                            }
+                        }
+                        
+                        break;
+
+                    case '3':
+                        //не работает
+                        double b = double.Parse(Console.ReadLine());
+                        for (double i = 1; i != b; i++)
+                        {
+                            double c = b / i;
+                            
+                            int f = (int)c;
+                            double fract = c - f;
+                            
+                            if (fract != 0)
+                            {
+                                Console.WriteLine(c);
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        break;
+                    case '4':
+                        Console.WriteLine("Thank you for using our program. In order to exit, press Esc.");
+                        break;
+                }
+
+            }
+        }
+    }
+}
